@@ -1,0 +1,23 @@
+﻿@model IEnumerable<EfWebTutorial.Models.Group>
+ <div class="container">
+    <h2>Список групп</h2>
+    <table class="table">
+        <tr><th>Название</th><th></th><th></th></tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Group" asp-route-id="@item.Id" class="btn">Изменить</a>
+                </td>
+                <td>@item?.Faculty?.Name</td>
+                <td>
+                    <form asp-controller="Group" asp-action="Delete" method="post" asp-route-id="@item.Id">
+                        <input type="submit" value="Удалить" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+    <p><a asp-action="Create" class="btn">Добавить группу</a></p>
+ </div>

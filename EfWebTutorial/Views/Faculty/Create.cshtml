@@ -1,0 +1,24 @@
+﻿@model EfWebTutorial.Viewmodels.Students.StudentViewModel
+
+<h2 class="head_addstudent">Добавление факультета</h2>
+
+@using(Html.BeginForm("Create", "Faculty", FormMethod.Post)) {
+
+    <div class="container container2">
+  
+            <div class="row">
+                <div class="col-25">
+                    <p class="label">Faculty name</p>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="fname" name="Faculty.Name" placeholder="Enter faculty name...">
+                </div>
+            </div>
+
+    </div>
+
+    <div class="row">
+        <input type="submit" value="Submit">
+    </div>
+
+}

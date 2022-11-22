@@ -1,0 +1,63 @@
+﻿@model EfWebTutorial.Viewmodels.Students.StudentViewModel
+
+<h2 class="head_addstudent">Список отсортированных студентов по имени</h2>
+
+@using (Html.BeginForm("GetSortedStudentsByName", "Student", FormMethod.Get))
+{
+
+    <div class="container">
+
+        @if ( Model.Students!= null)
+        {
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Group</th>
+                        <th scope="col">Faculty</th>
+                        <th scope="col">Delete</th>
+                        <th scope="col">Edit</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        @foreach (var item in Model.Students)
+                        {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Surname</td>
+                            <td>@item?.Group?.Name</td>
+                            <td>@item?.Group?.Faculty?.Name</td>
+                            <td>
+                                <form asp-controller="Student" asp-action="Delete" method="post" asp-route-id="@item.Id">
+                                    <input type="submit" value="Delete" class="btn" typeof="button" />
+                                </form>
+                            </td>
+                            <td>
+                                <a href="/Student/Edit/@item.Id" class="btn">
+                                    Edit
+                                </a>
+                            </td>
+                        </tr>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+
+
+        }
+        else
+        {
+
+            <div>
+                <div class="view_bag">
+                    @ViewBag.Message
+                </div>
+            </div>
+        }
+   </div>
+
+        }

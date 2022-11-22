@@ -1,0 +1,43 @@
+﻿@model EfWebTutorial.Viewmodels.Groups.GroupViewModel
+
+
+<h2 class="head_addstudent">Изменение данных</h2>
+
+@using (Html.BeginForm("Edit", "Group", FormMethod.Post))
+{
+        @Html.AntiForgeryToken()
+
+    <div class=" container container2">
+        <div class="row">
+            
+                <div class="col-25">
+                    @Html.EditorFor(model => model.Group.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Group.Name, "", new { @class = "text-danger" })
+                </div>
+            
+        </div>
+
+        <div class="row">
+                <div class="col-25">
+                <select name="Group.FacultyId">
+                    @foreach (var item in Model.Faculties)
+                    {
+                        <option value="@item.Id" selected="selected">@item.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="btn">
+            <input type="submit" value="Save">
+        </div>
+
+        <div class="btn">
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+
+   </div>
+
+
+
+}
